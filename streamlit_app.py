@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from streamlit import secrets as _secrets_module
 
 st.title("Reddit Sentiment Trend Analyzer")
@@ -41,14 +42,20 @@ if st.button("Fetch & Analyze"):
                     df['timestamp'] = pd.to_datetime(df['timestamp'])
                     df.set_index('timestamp', inplace=True)
                     df_hour = df.resample('1H').mean().dropna()
-                    fig, ax = plt.subplots()
+
+                    fig, ax = plt.subplots(figsize=(10, 5))
                     ax.plot(df_hour.index, df_hour['sentiment'], marker='o')
+
                     ax.set_title(f"Average Sentiment over Time ({mode}: {user_input})")
                     ax.set_xlabel("Time")
                     ax.set_ylabel("Sentiment (VADER compound)")
                     ax.axhline(0, linestyle='--', linewidth=0.5)
+
+                    # Format datetime X-axis
+                    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d %H:%M'))
+                    plt.xticks(rotation=45, ha='right')
+                    plt.tight_layout()
+
                     st.pyplot(fig)
-                    if st.checkbox("Show raw data"):
-                        st.dataframe(df.reset_index().sort_values('timestamp'))
         except Exception as e:
             st.error(f"Request failed: {e}")
