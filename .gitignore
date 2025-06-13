@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.env
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# SQLite database
+db.sqlite3
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Streamlit cache (if any)
+.streamlit/
