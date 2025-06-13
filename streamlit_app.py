@@ -57,5 +57,5 @@ if st.button("Fetch & Analyze"):
                     plt.tight_layout()
 
                     st.pyplot(fig)
-        except Exception as e:
+        except Exception as e: 
             st.error(f"Request failed: {e}")
