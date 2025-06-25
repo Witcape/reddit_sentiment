@@ -56,6 +56,6 @@ if st.button("Fetch & Analyze"):
                     plt.xticks(rotation=45, ha='right')
                     plt.tight_layout()
 
-                    st.pyplot(fig) 
+                    st.pyplot(fig)
         except Exception as e: 
             st.error(f"Request failed: {e}")
